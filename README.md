@@ -1,8 +1,7 @@
-Il punto chiave della struttura: sono 13 file di codice in totale. 5 nell'SDK (pre-work), 8 nella demo (hackathon). L'SDK è il file che ti ho dato prima spezzato in 4 moduli + i test. La demo sono 2 API route + 4 componenti React + layout + page. Tutto il resto è configurazione.
-Il fatto che sia Next.js + Tailwind + TypeScript con App Router significa che quando torni dall'hackathon, il codice della demo si integra nel monorepo Petra senza riscritture — stessa architettura, stesse convenzioni, stesso stack.
+L'SDK è il file di prima spezzato in 4 moduli + i test.
 
-│   # COSA: documentazione del progetto.
-│   # PERCHÉ: è un deliverable esplicito degli hackathon XRPL.
+│   # DOCUMENTAZIONE DEL PROGETTO
+│   # è un deliverable esplicito degli hackathon XRPL.
 │   #   I giudici lo leggono. Deve spiegare in 30 secondi:
 │   #   cos'è, che problema risolve, come si lancia la demo.
 │   # COME: titolo, una frase, il problema (Owner Reserve),
@@ -10,21 +9,49 @@ Il fatto che sia Next.js + Tailwind + TypeScript con App Router significa che qu
 │   #   link alla transazione di esempio su Bithomp testnet,
 │   #   dichiarazione del pre-work.
 │   # QUANDO: bozza prima dell'hackathon, finalizzato durante
-│   #   le ultime ore dell'hackathon con screenshot e link reali.
+│   #   le ultime ore dell'hackathon con screenshot e qr code reali.
 
-Riepilogo: cosa fai QUANDO
-Prima dell'hackathon (a casa)______________________________________________________________
+COMPLETE DEMO FLOW:
+1. APRE LA HOME → vede il QR code (tab "Scansiona & Dona")
+2. SCANSIONA IL QR (o clicca il link) → atterra su /donate?site=davedere
+3. SULLA PAGINA DONAZIONE:
+   - Sceglie €5
+   - Inserisce email: giudice@test.com
+   - Clicca "Dona €5"
+   - Vede il loading (1.5 sec) → "Donazione confermata! (#1 nel batch)"
+   - Ripete 2-3 volte con email diverse (simula più turisti)
+4. TORNA ALLA HOME → tab "Batch Monitor"
+   - Vede: "3 donazioni in attesa | Totale: €20"
+   - Lista delle 3 donazioni
+   - Clicca "SEAL BATCH & ANCHOR TO XRPL"
+   - Loading 5-8 secondi (costruzione tree + scrittura XRPL)
+   - RISULTATO: root hash + link Bithomp (clicca e verifica!)
+5. TAB "Il tuo album"
+   - Inserisce giudice@test.com
+   - Vede la sua CertificateCard con i colori derivati dall'hash
+   - Clicca "Verifica on-chain" → si apre Bithomp
+   - Clicca "Verifica proof" → la sezione sotto mostra VERDE
+6. PITCH: "Questo flusso, in produzione, ha Stripe al posto del
+   bottone simulato, PostgreSQL al posto della memoria, e la
+   Card diventa la Petra Card con il design istituzionale."
+
+
+Riepilogo:
+
+Prima dell'hackathon______________________________________________________________
 packages/sdk/           ← TUTTO (4 funzioni + test)
 scripts/                ← TUTTO (fund-wallet + test-e2e)
 docs/                   ← TUTTO (pitch + cost comparison)
 File radice             ← TUTTO (package.json, tsconfig, .env, README bozza)
-Durante l'hackathon (36 ore)_______________________________________________________________
+
+Durante l'hackathon_______________________________________________________________
 apps/demo/app/api/      ← I 2 endpoint (ore 1-5)
 apps/demo/app/page.tsx  ← La pagina principale (ore 5-6)
 apps/demo/components/   ← I 4 componenti (ore 6-18)
 README.md               ← Versione finale con screenshot (ultime ore)
 docs/pitch-deck.md      ← Aggiornamento con screenshot (ultime ore)
-Dopo l'hackathon (integrazione in Petra)___________________________________________________
+
+Dopo l'hackathon___________________________________________________
 packages/sdk/ → diventa un pacchetto nel monorepo Petra
 apps/demo/components/CertificateCard.tsx → evolve nella Petra Card
 apps/demo/api/batch/ → evolve nel webhook handler di Stripe
