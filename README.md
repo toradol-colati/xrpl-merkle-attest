@@ -12,50 +12,81 @@ L'SDK è il file di prima spezzato in 4 moduli + i test.
 │   #   le ultime ore dell'hackathon con screenshot e qr code reali.
 
 COMPLETE DEMO FLOW:
-1. APRE LA HOME → vede il QR code (tab "Scansiona & Dona")
-2. SCANSIONA IL QR (o clicca il link) → atterra su /donate?site=davedere
-3. SULLA PAGINA DONAZIONE:
-   - Sceglie €5
-   - Inserisce email: giudice@test.com
+1. HOME → il giudice vede il QR code + spiegazione del progetto
+2. SCANSIONA IL QR → atterra su /donate?site=basilica-roma
+3. PAGINA DONAZIONE:
+   - Vede "Restauro Basilica di Santa Maria"
+   - Sceglie €5 dai bottoni predefiniti
+   - Inserisce email (giudice@test.com)
    - Clicca "Dona €5"
-   - Vede il loading (1.5 sec) → "Donazione confermata! (#1 nel batch)"
-   - Ripete 2-3 volte con email diverse (simula più turisti)
-4. TORNA ALLA HOME → tab "Batch Monitor"
-   - Vede: "3 donazioni in attesa | Totale: €20"
-   - Lista delle 3 donazioni
+   - Loading 1.5s → "Donazione confermata! (#1 nel batch)"
+   - La CertificateCard appare subito (SENZA proof — dice
+     "Notarizzazione in corso...")
+   - Ripete 2-3 volte con email diverse
+4. HOME → tab "Batch Monitor":
+   - "4 donazioni in attesa | Totale: €23"
+   - Lista delle donazioni (email troncata, importo, sito)
    - Clicca "SEAL BATCH & ANCHOR TO XRPL"
-   - Loading 5-8 secondi (costruzione tree + scrittura XRPL)
-   - RISULTATO: root hash + link Bithomp (clicca e verifica!)
-5. TAB "Il tuo album"
+   - Loading ~5-8 secondi con messaggi sequenziali:
+     "Hashing delle donazioni..."
+     "Costruzione Merkle Tree..."
+     "Firma transazione XRPL..."
+     "Attesa validazione ledger..."
+   - RISULTATO: root hash + link Bithomp + conteggio foglie
+   - Clicca il link Bithomp → si apre l'explorer testnet →
+     il giudice VEDE il Memo con la root hash. Momento wow.
+5. HOME → tab "Il tuo album":
    - Inserisce giudice@test.com
-   - Vede la sua CertificateCard con i colori derivati dall'hash
-   - Clicca "Verifica on-chain" → si apre Bithomp
-   - Clicca "Verifica proof" → la sezione sotto mostra VERDE
-6. PITCH: "Questo flusso, in produzione, ha Stripe al posto del
-   bottone simulato, PostgreSQL al posto della memoria, e la
-   Card diventa la Petra Card con il design istituzionale."
+   - La CertificateCard ora mostra "Verificata su XRPL"
+     con il checkmark verde (il proof è stato allegato)
+   - Colori/pattern unici derivati dal leaf hash
+   - Clicca "Verifica on-chain" → apre Bithomp
+   - Clicca "Verifica proof" → la sezione VerifyProof
+     mostra il proof path → VERDE
+6. PITCH (3 minuti):
+   "In produzione, il bottone 'Dona' è Stripe Checkout.
+   L'email arriva dal webhook, non dal form.
+   La Map in memoria è PostgreSQL.
+   Il bottone 'Seal' è un job automatico ogni 24 ore.
+   La CertificateCard è la Petra Card.
+   Tutto il resto — l'SDK, il Merkle Tree, la scrittura
+   XRPL, la verifica — è identico."
 
 
 Riepilogo:
 
 Prima dell'hackathon______________________________________________________________
-packages/sdk/           ← TUTTO (4 funzioni + test)
-scripts/                ← TUTTO (fund-wallet + test-e2e)
-docs/                   ← TUTTO (pitch + cost comparison)
-File radice             ← TUTTO (package.json, tsconfig, .env, README bozza)
+packages/sdk/          ← FATTO (4 funzioni + test + tipi)
+scripts/               ← FATTO (fund-wallet + test-e2e)
+docs/                  ← FATTO (pitch-deck + cost-comparison)
+File radice            ← FATTO (package.json, tsconfig, .env, README bozza)
+apps/demo/             ← Struttura creata (package.json, config, layout, globals)
 
 Durante l'hackathon_______________________________________________________________
-apps/demo/app/api/      ← I 2 endpoint (ore 1-5)
-apps/demo/app/page.tsx  ← La pagina principale (ore 5-6)
-apps/demo/components/   ← I 4 componenti (ore 6-18)
-README.md               ← Versione finale con screenshot (ultime ore)
-docs/pitch-deck.md      ← Aggiornamento con screenshot (ultime ore)
+Ore 1-5:    Scrivi il codice dentro i route.ts delle API
+            (store.ts, donate, batch, pending, verify, album)
+Ore 5-7:    page.tsx (home con tab) + donate/page.tsx
+Ore 7-14:   I componenti React:
+            - QREntry.tsx (QR code con qrcode.react)
+            - DonationCheckout.tsx (simulazione pagamento)
+            - BatchMonitor.tsx (lista pending + bottone seal)
+            - BatchResult.tsx (root hash + link Bithomp + albero)
+            - VerifyProof.tsx (campo hash → verde/rosso)
+            - Album.tsx (email → griglia CertificateCard)
+            - CertificateCard.tsx (card visiva con colori da hash)
+Ore 14-18:  Polish, gamification, secondo use case
+Ore 18-20:  Video demo + aggiornamento pitch + README finale
+Ore 20-24:  Buffer imprevisti + submission
 
 Dopo l'hackathon___________________________________________________
-packages/sdk/ → diventa un pacchetto nel monorepo Petra
-apps/demo/components/CertificateCard.tsx → evolve nella Petra Card
-apps/demo/api/batch/ → evolve nel webhook handler di Stripe
-apps/demo/api/verify/ → diventa l'endpoint di verifica pubblica
+packages/sdk/                    → pacchetto npm nel monorepo Petra
+apps/demo/app/api/donate/        → evolve nel webhook handler Stripe
+apps/demo/app/api/batch/         → evolve nel job BullMQ automatico
+apps/demo/app/api/verify/        → endpoint pubblico di verifica
+apps/demo/app/api/album/         → endpoint autenticato (Magic Link)
+apps/demo/app/components/        → componenti della PWA Petra
+CertificateCard.tsx              → Petra Card con design istituzionale
+store.ts (Map in-memory)         → PostgreSQL + Prisma
 
 Come si collega al monorepo Petra
 Il monorepo Petra oggi ha /frontend (Next.js, il sito istituzionale).
