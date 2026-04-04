@@ -52,3 +52,11 @@ ________________________________________________________________________________
 │               │       #   in memoria. Non serve un database per la demo.
 │               │       #   In Petra sarà PostgreSQL. All'hackathon, in-memory.
 │               │       # QUANDO: ore 1-4 dell'hackathon.
+_____________________________________________________________________________________________
+AGGIORNAMENTO:
+// POLICY DI CHIUSURA DEL BATCH:
+// - Hackathon: manuale (bottone nella UI)
+// - Petra produzione: automatico (BullMQ cron ogni 24h
+//   OPPURE al raggiungimento di 500 donazioni)
+// - Presenze: manuale (il professore chiude a fine lezione)
+// L'SDK non decide quando chiudere. Questa route decide.
