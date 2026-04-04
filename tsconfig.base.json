@@ -1,0 +1,6 @@
+│   # COSA: configurazione TypeScript condivisa tra SDK e demo.
+│   # PERCHÉ: evita di duplicare le stesse opzioni in due tsconfig.
+│   #   Entrambi i workspace estendono questo file.
+│   # COME: target ES2022, module NodeNext, strict: true,
+│   #   esModuleInterop: true, skipLibCheck: true.
+│   # QUANDO: prima dell'hackathon.
