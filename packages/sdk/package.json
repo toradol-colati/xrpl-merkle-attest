@@ -1,0 +1,20 @@
+│       │   # ─────────────────────────────────────────────────
+│       │   # L'SDK di attestazione Merkle per XRPL.
+│       │   # Questo è il PRE-WORK da dichiarare.
+│       │   # Sono ~150 righe di TypeScript in totale.
+│       │   # Non è una "libreria" — è colla tra merkletreejs
+│       │   # e xrpl.js, impacchettata per essere riutilizzabile.
+│       │   # QUANDO: TUTTO prima dell'hackathon (giorni 4-5).
+│       │   # ─────────────────────────────────────────────────
+____________________________________________________________________________________________
+│       │   # COSA: dipendenze dell'SDK.
+│       │   # COME: { "name": "xrpl-merkle-sdk",
+│       │   #   "dependencies": {
+│       │   #     "xrpl": "^4.x",
+│       │   #     "merkletreejs": "^0.4.x",
+│       │   #     "keccak256": "^1.x"
+│       │   #   },
+│       │   #   "devDependencies": { "typescript", "vitest" }
+│       │   # }
+│       │   # QUANDO: prima dell'hackathon.
+____________________________________________________________________________________________
