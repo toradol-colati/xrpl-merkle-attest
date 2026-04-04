@@ -1,0 +1,8 @@
+│   # COSA: file radice del monorepo con npm workspaces.
+│   # PERCHÉ: permette a `apps/demo` di importare `packages/sdk`
+│   #   come se fosse un pacchetto npm, senza pubblicarlo.
+│   #   Quando lo integri nel monorepo Petra, copi la cartella
+│   #   packages/sdk e la registri come workspace.
+│   # COME: { "workspaces": ["packages/*", "apps/*"] }
+│   #   Nessuna dipendenza qui — ogni workspace ha le sue.
+│   # QUANDO: prima dell'hackathon.
