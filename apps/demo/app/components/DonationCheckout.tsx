@@ -35,3 +35,11 @@
 │       │   #   genera una donazione → la donazione entra nel batch.
 │       │   #
 │       │   # QUANDO: ore 7-10 dell'hackathon.
+________________________________________________________________________________________
+AGGIORNAMENTO:
+il checkout della donazione, dopo la conferma della donazione, mostrerà ora 
+"Donazione confermata! La tua Petra Card è pronta."
+[MOSTRA LA CARD VISIVA IMMEDIATAMENTE — SENZA PROOF]
+"La notarizzazione su blockchain avverrà entro 24 ore.
+Riceverai un aggiornamento quando il certificato sarà
+verificabile on-chain."
