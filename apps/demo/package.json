@@ -1,0 +1,18 @@
+│       │   # ─────────────────────────────────────────────────
+│       │   # La demo app. Next.js 14 + App Router + Tailwind.
+│       │   # Identico allo stack del sito istituzionale Petra.
+│       │   # Tutto il codice qui dentro è SCRITTO ALL'HACKATHON.
+│       │   # È il "codice fresco" che i giudici valutano.
+│       │   # ─────────────────────────────────────────────────
+│       │
+_____________________________________________________________________________________________
+
+│       │   # COSA: dipendenze della demo app.
+│       │   # COME: { "dependencies": {
+│       │   #   "next": "^14.x",
+│       │   #   "react": "^18.x",
+│       │   #   "tailwindcss": "^3.x",
+│       │   #   "xrpl-merkle-sdk": "workspace:*"  ← importa l'SDK locale
+│       │   # }}
+│       │   # QUANDO: la struttura prima dell'hackathon,
+│       │   #   ma i file sorgente durante l'hackathon.
