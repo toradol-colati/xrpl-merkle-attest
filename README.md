@@ -8,3 +8,32 @@
 │   #   dichiarazione del pre-work.
 │   # QUANDO: bozza prima dell'hackathon, finalizzato durante
 │   #   le ultime ore dell'hackathon con screenshot e link reali.
+
+Riepilogo: cosa fai QUANDO
+Prima dell'hackathon (a casa)______________________________________________________________
+packages/sdk/           ← TUTTO (4 funzioni + test)
+scripts/                ← TUTTO (fund-wallet + test-e2e)
+docs/                   ← TUTTO (pitch + cost comparison)
+File radice             ← TUTTO (package.json, tsconfig, .env, README bozza)
+Durante l'hackathon (36 ore)_______________________________________________________________
+apps/demo/app/api/      ← I 2 endpoint (ore 1-5)
+apps/demo/app/page.tsx  ← La pagina principale (ore 5-6)
+apps/demo/components/   ← I 4 componenti (ore 6-18)
+README.md               ← Versione finale con screenshot (ultime ore)
+docs/pitch-deck.md      ← Aggiornamento con screenshot (ultime ore)
+Dopo l'hackathon (integrazione in Petra)___________________________________________________
+packages/sdk/ → diventa un pacchetto nel monorepo Petra
+apps/demo/components/CertificateCard.tsx → evolve nella Petra Card
+apps/demo/api/batch/ → evolve nel webhook handler di Stripe
+apps/demo/api/verify/ → diventa l'endpoint di verifica pubblica
+
+Come si collega al monorepo Petra
+Il monorepo Petra oggi ha /frontend (Next.js, il sito istituzionale).
+Dopo l'hackathon:
+Copi packages/sdk dentro il monorepo Petra come workspace
+In Petra, npm install xrpl-merkle-sdk punta al workspace locale
+Il webhook handler di Stripe in Petra importa:
+ts   import { buildTree, anchorToXRPL, getProof } from 'xrpl-merkle-sdk'
+La PWA di Petra importa CertificateCard (evoluto in Petra Card)
+Il codice dell'hackathon non viene buttato — diventa il fondamento
+del layer blockchain di Petra.
