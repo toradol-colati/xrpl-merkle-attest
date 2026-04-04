@@ -1,5 +1,6 @@
 Il punto chiave della struttura: sono 13 file di codice in totale. 5 nell'SDK (pre-work), 8 nella demo (hackathon). L'SDK è il file che ti ho dato prima spezzato in 4 moduli + i test. La demo sono 2 API route + 4 componenti React + layout + page. Tutto il resto è configurazione.
 Il fatto che sia Next.js + Tailwind + TypeScript con App Router significa che quando torni dall'hackathon, il codice della demo si integra nel monorepo Petra senza riscritture — stessa architettura, stesse convenzioni, stesso stack.
+
 │   # COSA: documentazione del progetto.
 │   # PERCHÉ: è un deliverable esplicito degli hackathon XRPL.
 │   #   I giudici lo leggono. Deve spiegare in 30 secondi:
