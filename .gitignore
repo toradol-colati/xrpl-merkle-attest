@@ -1,0 +1,2 @@
+│   # COSA: esclude node_modules, .env, .next, dist.
+│   # QUANDO: prima dell'hackathon.
