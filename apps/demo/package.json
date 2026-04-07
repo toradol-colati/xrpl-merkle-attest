@@ -16,3 +16,13 @@ ________________________________________________________________________________
 │       │   # }}
 │       │   # QUANDO: la struttura prima dell'hackathon,
 │       │   #   ma i file sorgente durante l'hackathon.
+
+{
+  "dependencies": {
+    "xrpl": "4.0.0",
+    "merkletreejs": "0.4.0",
+    "keccak256": "1.0.6"
+  }
+}
+E committi package-lock.json (che fa lo stesso a livello transitive). Questa regola vale solo 
+per le dipendenze che toccano l'hashing — per cose come React o Tailwind puoi lasciare.

@@ -1,0 +1,29 @@
+{
+  "description": "Batch di 3 donazioni, ordinamento deterministico",
+  "input": [
+    {
+      "id": "01234567-89ab-cdef-0123-456789abcdef",
+      "amountCents": 500,
+      "currency": "EUR",
+      "siteId": "basilica-roma",
+      "timestampUnix": 1744372800
+    },
+    {
+      "id": "fedcba98-7654-3210-fedc-ba9876543210",
+      "amountCents": 1000,
+      "currency": "EUR",
+      "siteId": "duomo-firenze",
+      "timestampUnix": 1744372860
+    }
+  ],
+  "expected": {
+    "leafHashes": ["0xabc...", "0xdef..."],
+    "sortedLeaves": ["0xabc...", "0xdef..."],
+    "rootHash": "0x123..."
+  }
+}
+
+Un test in __tests__/sdk.test.ts carica il file e verifica che la tua implementazione produca 
+esattamente quei valori. Nel pitch all'hackathon dici: "questi sono test vector pubblici, chiunque 
+può implementare un verificatore in qualsiasi linguaggio e testarlo contro questi valori." 
+È la prova tangibile che il tuo SDK è uno standard, non un blob proprietario.

@@ -31,3 +31,4 @@
 │       │   #   alla volta — dimostra il concetto di aggregazione.
 │       │   #
 │       │   # QUANDO: ore 10-12 dell'hackathon.
+
